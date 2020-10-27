@@ -17,8 +17,14 @@ module.exports = {
 /*
  DB schemas below for reference 
 
-CREATE TABLE questions (_id SERIAL PRIMARY KEY, question VARCHAR(255) NOT NULL);
+CREATE TABLE questions (_id SERIAL PRIMARY KEY, question VARCHAR(8000) NOT NULL);
 
-CREATE TABLE questionaire (_id SERIAL PRIMARY KEY, question1 INT FOREIGN KEY(questions._id) NOT NULL, question2 INT FOREIGN KEY(questions._id), question3 INT FOREIGN KEY(questions._id), question4 INT FOREIGN KEY(questions._id), question5 INT FOREIGN KEY(questions._id), created_at TIMESTAMPTZ NOT NULL DEFAULT NOW());
+CREATE TABLE questionnaire (_id SERIAL PRIMARY KEY, question1 INT NOT NULL, question2 INT, question3 INT, question4 INT, question5 INT, FOREIGN KEY (question1) REFERENCES questions(_id), FOREIGN KEY (question2) REFERENCES questions(_id), FOREIGN KEY (question3) REFERENCES questions(_id), FOREIGN KEY (question4) REFERENCES questions(_id), FOREIGN KEY (question5) REFERENCES questions(_id));
+
+Finished through the above 
+
+CREATE TABLE links (_id SERIAL PRIMARY KEY, user INT FOREIGN KEY(users._id) NOT NULL, questionnaire INT FOREIGN KEY(questionnaire._id), link VARCHAR(500) NOT NULL, created_at TIMESTAMPTZ NOT NULL DEFAULT NOW());
+
+CREATE TABLE users (_id SERIAL PRIMARY KEY, username VARCHAR(255) NOT NULL, name VARCHAR(255), authentication_token VARCHAR(255), email VARCHAR(255), other VARCHAR(255));
 
 */
