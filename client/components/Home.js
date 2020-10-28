@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-// TODO import condensed Outstanding Questionaires
 
 export default function Home({ navigation }) {
   const pressHandler = () => {
@@ -9,6 +8,19 @@ export default function Home({ navigation }) {
 
   // Dummy data for username
   const userName = <Text style={styles.userNameStyle}>Chris</Text>;
+
+  // Hook for questionaire data:
+  const [questionaireData, setQuestionaireData] = useState({});
+
+  // Fetch outstanding questionaires feed onload
+  useEffect(() => {
+    fetch('/api/feed')
+      .then((res) => res.json())
+      .then((res) => setQuestionaireData(res))
+      .catch((err) =>
+        console.log('Failed to load outstanding questionaires from db:', err)
+      );
+  }, []);
 
   return (
     <View style={styles.container}>
