@@ -50,9 +50,6 @@ export default function CreateFeedback({navigation}) {
         )}>
         </FlatList>
 
-
-
-
         
       </View>
       <View style = {styles.buttonContainer}>
