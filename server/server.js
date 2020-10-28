@@ -8,6 +8,7 @@ const port = 3838;
 // const requestRouter = require('./router/requestRouter');
 const session = require('express-session');
 const passport = require('passport');
+const cookieSession = require('cookie-session');
 // const Strategy = require('passport-google-oauth20').Strategy;
 require('../config/passport');
 
@@ -24,12 +25,20 @@ app.use(express.urlencoded({ extended: true }));
 // routes users to login
 // app.use('/login', loginRouter);
 
+app.use(
+  cookieSession({
+    name: 'critique-session',
+    keys: ['key1', 'key2'],
+  })
+);
+
 // temp until we create our loginController
 const isLoggedIn = (req, res, next) => {
   if (req.user) {
     next();
   } else {
     res.sendStatus(401);
+    // res.send('user not in db');
   }
 };
 
@@ -68,6 +77,7 @@ app.get(
   '/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/failed' }),
   function (req, res) {
+    // console.log('do we get here?');
     // Successful authentication, redirect home.
     res.redirect('/chill');
   }
