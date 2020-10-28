@@ -77,7 +77,6 @@ export default function CreateFeedback({navigation}) {
 
 
 
-
         {/* <FlatList
         data = {questions}
         renderItem = {({item}) => (
