@@ -16,6 +16,7 @@ export default function CreateAnswer() {
                 </View>
                 <View style={styles.contentBox}>
                     {/* Question Content Panel */}  
+                    <Text style={styles.contentText}>Question content, also from home via state</Text>
                 </View>
                 {/* TODO: Cannot see inputbox when typing */}
                 <View style={styles.inputBox}>
@@ -41,13 +42,13 @@ export default function CreateAnswer() {
     )
 };
 
+// TODO: flex
 const styles = StyleSheet.create({
     page: {
-        flex: 1,
-        flexDirection: 'column'
+        // flex: 1,
     },
     questionPanel: {
-        // flex: 2,
+        // flex: 1,
         paddingVertical: 80,
         backgroundColor: 'lightgreen',
     },
@@ -59,9 +60,14 @@ const styles = StyleSheet.create({
         fontSize: 10,
     },
     contentBox: {
-        // flex: 4,
-        padding: 170,
+        // flex: 1,
+        paddingBottom: 300,
         backgroundColor: 'yellow',
+    },
+    contentText: {
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start',
+        paddingVertical: 10,
     },
     inputBox: {
         // flex: 1,
@@ -78,9 +84,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'blue',
-        padding: 50,
-        
+        backgroundColor: 'blue', 
     },
     buttons: {
         justifyContent: 'center',
