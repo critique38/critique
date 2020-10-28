@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, Button, TextInput } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function CreateAnswer() {
 
@@ -23,6 +24,14 @@ export default function CreateAnswer() {
                     placeholder={'Write feedback...'}
                     onChangeText={(input) => setText(input)}
                 />
+            </View>
+            <View style={styles.buttons}>
+                {/* <TouchableOpacity> */}
+                    <Text style={styles.backButton}>back</Text>
+                {/* </TouchableOpacity> */}
+                {/* <TouchableOpacity> */}
+                    <Text style={styles.nextButton}>next</Text>
+                {/* </TouchableOpacity> */}
             </View>
      
         </View>
@@ -51,13 +60,28 @@ const styles = StyleSheet.create({
         backgroundColor: 'orange',
     },
     innerInputBox: {
-        paddingVertical:100,
+        paddingHorizontal:10,
         justifyContent: 'flex-start',
+        alignItems: 'flex-start',
+    },
+    buttons: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'blue',
+        padding: 50,
+        
     },
     backButton: {
+        paddingVertical: 20,
+        width: 200,
+        backgroundColor: 'red',
 
     },
     nextButton: {
-
+        paddingVertical: 20,
+        width: 200,
+        backgroundColor: 'purple',
     },
 })
