@@ -6,6 +6,6 @@ const answersRouter = express.Router();
 // answersRouter.get()
 
 // posting feedback response to database
-answersRouter.post();
+// answersRouter.post();
 
 module.exports = answersRouter;
