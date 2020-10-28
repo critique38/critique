@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import { StyleSheet, View, Text, Button } from 'react-native';
-import { FlatList } from 'react-native-gesture-handler';
+import { FlatList, TextInput } from 'react-native-gesture-handler';
 import CreateList from '../components/CreateList'
+import CreateInput from '../components/CreateInput'
 
 export default function CreateFeedback({navigation}) {
 
@@ -10,6 +11,15 @@ export default function CreateFeedback({navigation}) {
     {text: 'How can I do more?', id: '2'}, 
     {text: 'What is my biggest strength?', id: '3'}, 
   ])
+
+  const submitHandler = (text) => {
+    setQuestions((prevQuestions) => {
+      return [
+        {text: text, id: Math.random().toString()}, 
+        ...prevQuestions
+      ]
+    })
+  }
 
   const pressHandler = (id) => {
     setQuestions((prevQuestions) => {
@@ -29,6 +39,8 @@ export default function CreateFeedback({navigation}) {
   return (
     <View style={styles.container}>
 
+      <CreateInput submitHandler = {submitHandler}/>
+
       <View style = {styles.list}>
         <FlatList
         data = {questions}
@@ -36,9 +48,7 @@ export default function CreateFeedback({navigation}) {
           <CreateList 
           item = {item}
           pressHandler = {pressHandler}/>
-        )}
-      
-        >
+        )}>
 
         </FlatList>
       </View>
