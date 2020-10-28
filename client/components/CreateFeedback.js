@@ -12,13 +12,6 @@ export default function CreateFeedback({navigation}) {
     {text: 'What is my biggest strength?', id: '3'}, 
   ])
 
-<<<<<<< HEAD
-    return (
-        <View>
-            <View></View>
-        </View>
-    )
-=======
   const submitHandler = (text) => {
     setQuestions((prevQuestions) => {
       return [
@@ -27,7 +20,6 @@ export default function CreateFeedback({navigation}) {
       ]
     })
   }
->>>>>>> 3c257334ba001cd4b105706c3c00ebbdbc131b60
 
   const pressHandler = (id) => {
     setQuestions((prevQuestions) => {
