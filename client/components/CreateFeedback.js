@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
-import { StyleSheet, View, Text, Button } from 'react-native';
+import { StyleSheet, View, Text, Button, Animated, TouchableHighlight, TouchableOpacity, StatusBar } from 'react-native';
 import { FlatList, TextInput } from 'react-native-gesture-handler';
 import CreateList from '../components/CreateList'
 import CreateInput from '../components/CreateInput'
+import { SwipeListView  } from 'react-native-swipe-list-view';
 
 export default function CreateFeedback({navigation}) {
 
@@ -36,22 +37,55 @@ export default function CreateFeedback({navigation}) {
     navigation.pop();
   }
 
+  const VisibleItem = props => {
+    const data = {props};
+
+    return (
+      <TouchableHighlight style = {styles.rowFrontVisible}>
+        <View>
+          <Text style = {styles.title} numberOfLines = {1}>
+          {data.item.text}
+          </Text>
+        </View>
+      </TouchableHighlight>
+    ) 
+  }
+
+  const renderItem = () => {
+    return (
+      <VisibleItem />
+    )
+
+  }
+
+  const renderHiddenItem = () => {
+
+  }
+
+
   return (
     <View style={styles.container}>
       <CreateInput submitHandler = {submitHandler}/>
       <View style = {styles.list}>
+ 
+        <SwipeListView
+        data = {questions}
+        renderItem = {renderItem}
+        renderHiddenItem = {renderHiddenItem}
+          />
 
-        <FlatList
+
+
+
+
+        {/* <FlatList
         data = {questions}
         renderItem = {({item}) => (
           <CreateList 
           item = {item}
           pressHandler = {pressHandler}/>
         )}>
-        </FlatList>
-
-
-
+        </FlatList> */}
 
         
       </View>
