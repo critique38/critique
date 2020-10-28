@@ -35,17 +35,19 @@ export default function CreateAnswer({ navigation }) {
                         multiline
                         style={styles.innerInputBox}
                         placeholder={'Write feedback...'}
+                        placeholderTextColor='white'
                         onChangeText={(input) => setText(input)}
                     />
                 </View>
 
                 <View style={styles.buttonsBox}>
-                    <TouchableOpacity style={styles.buttons}>
-                        <Text style={styles.backButtonText} onPress={backHandler}>back</Text>
+                    <TouchableOpacity style={styles.buttons} onPress={backHandler}>
+                        <Text style={styles.backButtonText}>back</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.buttons}>
-                        <Text style={styles.nextButtonText} onPress={nextHandler}>next</Text>
-                    </TouchableOpacity>
+                
+                    <TouchableOpacity style={styles.buttons} onPress={nextHandler}>
+                        <Text style={styles.nextButtonText}>next</Text>
+                    </TouchableOpacity>         
                 </View>
         
             </View>
@@ -61,56 +63,72 @@ const styles = StyleSheet.create({
     },
     questionPanel: {
         // flex: 1,
+        color: 'white',
         paddingVertical: 80,
-        backgroundColor: 'lightgreen',
+        backgroundColor: 'black',
+        marginBottom: 3,
     },
     qTitle: {
+        color: 'white',
         fontSize: 20,
         fontWeight: '700',
+        paddingLeft: 10,
     },
     qWriter: {
+        color: 'white',
         fontSize: 10,
+        paddingLeft: 10,
     },
     contentBox: {
         // flex: 1,
         paddingBottom: 300,
-        backgroundColor: 'yellow',
+        backgroundColor: 'black',
     },
     contentText: {
+        color: 'white',
         justifyContent: 'flex-start',
         alignItems: 'flex-start',
         paddingVertical: 10,
     },
     inputBox: {
         // flex: 1,
-        paddingVertical: 20,
-        backgroundColor: 'orange',
+        paddingVertical: 10,
+        marginTop: 3,
+        backgroundColor: 'black',
     },
     innerInputBox: {
+        color: 'white',
+        backgroundColor: 'black',
         paddingHorizontal:10,
+        paddingVertical: 10,
         justifyContent: 'flex-start',
         alignItems: 'flex-start',
+      
     },
     buttonsBox: {
         // flex: 1,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'blue', 
+        backgroundColor: '#000000',
+        marginTop: 3 
     },
     buttons: {
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'red',
+        backgroundColor: 'black',
         padding: 50,
     },
     backButtonText: {
         fontSize: 20,
+        color: 'white',
         fontWeight: 'bold',
         marginLeft: 90,
+        
     },
     nextButtonText: {
         fontSize: 20,
+        color: 'white',
         fontWeight: 'bold',
         marginRight: 90,
     }
