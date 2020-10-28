@@ -25,13 +25,13 @@ export default function CreateAnswer() {
                     onChangeText={(input) => setText(input)}
                 />
             </View>
-            <View style={styles.buttons}>
-                {/* <TouchableOpacity> */}
-                    <Text style={styles.backButton}>back</Text>
-                {/* </TouchableOpacity> */}
-                {/* <TouchableOpacity> */}
-                    <Text style={styles.nextButton}>next</Text>
-                {/* </TouchableOpacity> */}
+            <View style={styles.buttonsBox}>
+                <TouchableOpacity style={styles.buttons}>
+                    <Text style={styles.backButtonText}>back</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.buttons}>
+                    <Text style={styles.nextButtonText}>next</Text>
+                </TouchableOpacity>
             </View>
      
         </View>
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'flex-start',
     },
-    buttons: {
+    buttonsBox: {
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'center',
@@ -73,15 +73,20 @@ const styles = StyleSheet.create({
         padding: 50,
         
     },
-    backButton: {
-        paddingVertical: 20,
-        width: 200,
+    buttons: {
+        justifyContent: 'center',
+        alignItems: 'center',
         backgroundColor: 'red',
-
+        padding: 50,
     },
-    nextButton: {
-        paddingVertical: 20,
-        width: 200,
-        backgroundColor: 'purple',
+    backButtonText: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginLeft: 90,
     },
+    nextButtonText: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginRight: 90,
+    }
 })
