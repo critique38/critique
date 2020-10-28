@@ -12,21 +12,24 @@ export default function CreateAnswer({ navigation }) {
     }
     const nextHandler = () => {
         // fix issue of having to click multiple times
-        navigation.push('SendAnswer');
+        // passes text state to SendAnswer page
+        navigation.navigate('SendAnswer', { answerText: text });
     };
 
     return (
         <ScrollView>
             <View style={styles.page}>
+
                 <View style={styles.questionPanel}>
                     <Text style={styles.qTitle}>Fetched Q from home, via state{'\n'}</Text>
                     <Text style={styles.qWriter}> posted by Joon Kim </Text>
                 </View>
+
                 <View style={styles.contentBox}>
                     {/* Question Content Panel */}  
                     <Text style={styles.contentText}>Question content, also from home via state</Text>
                 </View>
-                {/* TODO: Cannot see inputbox when typing */}
+
                 <View style={styles.inputBox}>
                     <TextInput 
                         multiline
@@ -35,6 +38,7 @@ export default function CreateAnswer({ navigation }) {
                         onChangeText={(input) => setText(input)}
                     />
                 </View>
+
                 <View style={styles.buttonsBox}>
                     <TouchableOpacity style={styles.buttons}>
                         <Text style={styles.backButtonText} onPress={backHandler}>back</Text>
