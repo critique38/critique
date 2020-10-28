@@ -17,7 +17,7 @@ export default function Home({ navigation }) {
     <View style={styles.container}>
       <Text>Home Screen</Text>
         <TouchableOpacity>
-          <Text onPress={touchHandler}>Sample Question from Chris</Text>
+          <Text onPress={touchHandler}>Sample Question from Joon Kim</Text>
         </TouchableOpacity>
       <Button 
       title = 'Next'

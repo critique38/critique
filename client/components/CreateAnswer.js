@@ -1,47 +1,54 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, Button, TextInput } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function CreateAnswer() {
 
     const [text, setText] = useState('');
 
     return (
-        <View>
-            <View style={styles.questionPanel}>
-                <Text style={styles.qTitle}>Fetched Q from home, via state{'\n'}</Text>
-                <Text style={styles.qWriter}> posted by Chris Guittezzi</Text>
+        <ScrollView>
+            <View style={styles.page}>
+                <View style={styles.questionPanel}>
+                    <Text style={styles.qTitle}>Fetched Q from home, via state{'\n'}</Text>
+                    <Text style={styles.qWriter}> posted by Joon Kim </Text>
+                </View>
+                <View style={styles.contentBox}>
+                    {/* Question Content Panel */}  
+                </View>
+                {/* TODO: Cannot see inputbox when typing */}
+                <View style={styles.inputBox}>
+                    <TextInput 
+                        multiline
+                        style={styles.innerInputBox}
+                        placeholder={'Write feedback...'}
+                        onChangeText={(input) => setText(input)}
+                    />
+                </View>
+                <View style={styles.buttonsBox}>
+                    <TouchableOpacity style={styles.buttons}>
+                        <Text style={styles.backButtonText}>back</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.buttons}>
+                        <Text style={styles.nextButtonText}>next</Text>
+                    </TouchableOpacity>
+                </View>
+        
             </View>
-            <View style={styles.contentBox}>
-                {/* Question Content Panel */}  
-            </View>
-            {/* TODO: Cannot see inputbox when typing */}
-            <View style={styles.inputBox}>
-                <TextInput 
-                    multiline
-                    style={styles.innerInputBox}
-                    placeholder={'Write feedback...'}
-                    onChangeText={(input) => setText(input)}
-                />
-            </View>
-            <View style={styles.buttonsBox}>
-                <TouchableOpacity style={styles.buttons}>
-                    <Text style={styles.backButtonText}>back</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.buttons}>
-                    <Text style={styles.nextButtonText}>next</Text>
-                </TouchableOpacity>
-            </View>
-     
-        </View>
+        </ScrollView>
 
     )
 };
 
 const styles = StyleSheet.create({
+    page: {
+        flex: 1,
+        flexDirection: 'column'
+    },
     questionPanel: {
-        paddingVertical: 50,
+        // flex: 2,
+        paddingVertical: 80,
         backgroundColor: 'lightgreen',
     },
     qTitle: {
@@ -52,11 +59,13 @@ const styles = StyleSheet.create({
         fontSize: 10,
     },
     contentBox: {
+        // flex: 4,
         padding: 170,
         backgroundColor: 'yellow',
     },
     inputBox: {
-        paddingVertical: 10,
+        // flex: 1,
+        paddingVertical: 20,
         backgroundColor: 'orange',
     },
     innerInputBox: {
@@ -65,7 +74,7 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
     },
     buttonsBox: {
-        flex: 1,
+        // flex: 1,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
