@@ -1,18 +1,28 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { StyleSheet, View, Text, Button } from 'react-native';
 
+export default function CreateFeedback({navigation}) {
 
-export default function AnswerView() {
+  const pressNext = () => {
+    navigation.push('SendFeedback')
+  }
 
-    return (
-        <View>
-            
-        </View>
-    )
+  const pressBack = () => {
+    navigation.pop();
+  }
 
+  return (
+    <View style={styles.container}>
+      <Text>CreateFeedback</Text>
+      <Button 
+      title = 'Next'
+      onPress = {pressNext}/>
+    </View>
+  );
 }
 
-
 const styles = StyleSheet.create({
-
-})
+  container: {
+    padding: 24,
+  },
+});
