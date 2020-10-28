@@ -6,7 +6,7 @@ export default function SendAnswer({ navigation }) {
     const answerText = navigation.getParam('answerText');
     const [writer, setWriter] = useState('');
     const sendAnswer = () => {
-      
+        
 
     }
 
@@ -18,6 +18,7 @@ export default function SendAnswer({ navigation }) {
 
             <View style={styles.previewBox}>
                 <Text style={styles.previewText}>{answerText}</Text>
+                <Text>posted by {writer}</Text>
             </View>
 
             <View>
@@ -36,9 +37,6 @@ export default function SendAnswer({ navigation }) {
                 <TouchableOpacity>
                     <Text onPress={sendAnswer}>Send</Text>
                 </TouchableOpacity>
-                <View style={styles.sa}>
-                  <Text>{writer}</Text>
-                </View>
                 
             </View>
             
@@ -71,8 +69,4 @@ const styles = StyleSheet.create({
         backgroundColor: 'purple',
         padding: 30,
     },
-    sa: {
-        backgroundColor: 'orange',
-        padding: 30,
-    }
 });
