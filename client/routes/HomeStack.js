@@ -6,10 +6,16 @@ import SendFeedback from '../components/SendFeedback';
 import CreateFeedback from '../components/CreateFeedback';
 import CreateAnswer from '../components/CreateAnswer';
 import SendAnswer from '../components/SendAnswer';
+import Header from '../shared/Header'
 
 const screens = {
   Home: {
     screen: Home,
+    navigationOptions : ({navigation}) => {
+      return {
+        headerTitle: () => <Header navigation = {navigation} />,
+      }
+    }
   }, 
   CreateFeedback: {
     screen: CreateFeedback,
