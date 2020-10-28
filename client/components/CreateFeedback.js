@@ -37,12 +37,11 @@ export default function CreateFeedback({navigation}) {
     navigation.pop();
   }
 
-  const closerRow = (rowMap,rowKey) => {
-
-  }
-
   const deleteRow = (rowMap,rowKey) => {
-
+    const newData = [...questions];
+    const prevIndex = questions.findIndex(item => item.id === rowKey);
+    newData.splice(prevIndex, 1);
+    setQuestions(newData);
   }
 
   const HiddenItemWithActions = props => {
@@ -50,13 +49,8 @@ export default function CreateFeedback({navigation}) {
 
     return(
       <View style = {styles.rowBack}>
-        <Text> Left </Text>
-       
-        <TouchableOpacity style ={[styles.backRightBtn, styles.backRightBtnLeft]}>
-        <Text> Close </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style ={[styles.backRightBtn, styles.backRightBtnRight]}>
+        <TouchableOpacity style ={[styles.backRightBtn, styles.backRightBtnRight]}
+        onPress = {onDelete}>
         <Text> Delete </Text>
         </TouchableOpacity>
 
@@ -84,7 +78,6 @@ export default function CreateFeedback({navigation}) {
     return (
       <VisibleItem data = {data} />
     )
-
   }
 
   const renderHiddenItem = (data, rowMap) => {
@@ -92,12 +85,10 @@ export default function CreateFeedback({navigation}) {
     <HiddenItemWithActions
     data = {data}
     rowMap = {rowMap}
-    closeRow = {() => closeRow(rowMap,data.item.id)}
-    deleteRow = {() => deleteRow(rowMap,data.item.id)}
+    onDelete = {() => deleteRow(rowMap,data.item.id)}
     />
     )
   }
-
 
 
   return (
@@ -109,19 +100,9 @@ export default function CreateFeedback({navigation}) {
         data = {questions}
         renderItem = {renderItem}
         renderHiddenItem = {renderHiddenItem}
-        leftOpenValue ={75}
-        rightOpenValue = {-150}
-          />
-        {/* <FlatList
-        data = {questions}
-        renderItem = {({item}) => (
-          <CreateList 
-          item = {item}
-          pressHandler = {pressHandler}/>
-        )}>
-        </FlatList> */}
-
-        
+        leftOpenValue ={0}
+        rightOpenValue = {-75}
+          /> 
       </View>
       <View style = {styles.buttonContainer}>
       <Button 
