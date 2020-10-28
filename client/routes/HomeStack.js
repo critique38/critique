@@ -4,6 +4,8 @@ import React from 'react';
 import Home from '../components/Home'
 import SendFeedback from '../components/SendFeedback';
 import CreateFeedback from '../components/CreateFeedback';
+import CreateAnswer from '../components/CreateAnswer';
+import SendAnswer from '../components/SendAnswer';
 import Header from '../shared/Header'
 
 const screens = {
@@ -19,8 +21,15 @@ const screens = {
     screen: CreateFeedback,
   }, 
   SendFeedback:{
-    screen:SendFeedback,
-  }
+    screen: SendFeedback,
+  },
+  CreateAnswer: {
+    screen: CreateAnswer,
+  },
+  SendAnswer: {
+    screen: SendAnswer,
+  },
+
 };
 
 // home stack navigator screens
