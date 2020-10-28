@@ -6,7 +6,7 @@ export default function AnswerView() {
 
     return (
         <View>
-            
+            <View></View>
         </View>
     )
 
