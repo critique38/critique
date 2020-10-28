@@ -18,7 +18,10 @@ export default function SendAnswer({ navigation }) {
             })
         };
         fetch('/answers', postObj)
-            .catch(err => Alert.alert('Oops!', 'Problem with internet connection or server! Please try again', [{text: 'Confirm'}]));
+            .catch(err => Alert.alert(
+                'Oops!', 'Problem with internet connection or server! Please try again', 
+                [{text: 'Confirm'}]
+            ));
     }
 
     return (

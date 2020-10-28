@@ -21,13 +21,13 @@ export default function CreateAnswer({ navigation }) {
             <View style={styles.page}>
 
                 <View style={styles.questionPanel}>
-                    <Text style={styles.qTitle}>Fetched Q from home, via state{'\n'}</Text>
-                    <Text style={styles.qWriter}> posted by Joon Kim </Text>
+                    <Text style={styles.qTitle}>get Q from home, via prop-drill{'\n'}</Text>
+                    <Text style={styles.qWriter}> posted by Joon Kim , also prop-drilled</Text>
                 </View>
 
                 <View style={styles.contentBox}>
                     {/* Question Content Panel */}  
-                    <Text style={styles.contentText}>Question content, also from home via state</Text>
+                    <Text style={styles.contentText}>Question content, prop-drilled</Text>
                 </View>
 
                 <View style={styles.inputBox}>
