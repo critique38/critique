@@ -8,10 +8,11 @@ export default function CreateAnswer({ navigation }) {
 
     const [text, setText] = useState('');
     const backHandler = () => {
-        navigation.navigate('Home');
+        navigation.pop();
     }
     const nextHandler = () => {
-        navigation.navigate('SendAnswer');
+        // fix issue of having to click multiple times
+        navigation.push('SendAnswer');
     };
 
     return (
