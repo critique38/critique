@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
     },
     qWriter: {
-        color: 'white',
+        color: 'gold',
         fontSize: 10,
         paddingLeft: 10,
     },
@@ -117,19 +117,19 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'black',
-        padding: 50,
+        padding: 30,
     },
     backButtonText: {
         fontSize: 20,
         color: 'white',
         fontWeight: 'bold',
-        marginLeft: 90,
+        marginLeft: 50,
         
     },
     nextButtonText: {
         fontSize: 20,
         color: 'white',
         fontWeight: 'bold',
-        marginRight: 90,
+        marginRight: 50,
     }
 })
