@@ -3,9 +3,16 @@ import React, { useState } from 'react';
 import { StyleSheet, View, Text, Button, TextInput } from 'react-native';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 
-export default function CreateAnswer() {
+// has access to navigation prop because this funciton is listed in homestack
+export default function CreateAnswer({ navigation }) {
 
     const [text, setText] = useState('');
+    const backHandler = () => {
+        navigation.navigate('Home');
+    }
+    const nextHandler = () => {
+        navigation.navigate('SendAnswer');
+    };
 
     return (
         <ScrollView>
@@ -29,10 +36,10 @@ export default function CreateAnswer() {
                 </View>
                 <View style={styles.buttonsBox}>
                     <TouchableOpacity style={styles.buttons}>
-                        <Text style={styles.backButtonText}>back</Text>
+                        <Text style={styles.backButtonText} onPress={backHandler}>back</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.buttons}>
-                        <Text style={styles.nextButtonText}>next</Text>
+                        <Text style={styles.nextButtonText} onPress={nextHandler}>next</Text>
                     </TouchableOpacity>
                 </View>
         
