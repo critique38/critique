@@ -1,13 +1,24 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, Button } from 'react-native';
+import { StyleSheet, View, Text, Button, Alert } from 'react-native';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function SendAnswer({ navigation }) {
     const answerText = navigation.getParam('answerText');
     const [writer, setWriter] = useState('');
-    const sendAnswer = () => {
-        
 
+    const sendAnswer = () => {
+        const postObj = {
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                feedbackAnswer: answerText,
+                writer: writer
+            })
+        };
+        fetch('/answers', postObj)
+            .catch(err => Alert.alert('Oops!', 'Problem with internet connection or server! Please try again', [{text: 'Confirm'}]));
     }
 
     return (
