@@ -4,10 +4,16 @@ import React from 'react';
 import Home from '../components/Home'
 import SendFeedback from '../components/SendFeedback';
 import CreateFeedback from '../components/CreateFeedback';
+import Header from '../shared/Header'
 
 const screens = {
   Home: {
     screen: Home,
+    navigationOptions : ({navigation}) => {
+      return {
+        headerTitle: () => <Header navigation = {navigation} />,
+      }
+    }
   }, 
   CreateFeedback: {
     screen: CreateFeedback,
