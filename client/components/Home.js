@@ -1,0 +1,94 @@
+
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, View, Text, Button, TouchableOpacity } from 'react-native';
+
+export default function Home({ navigation }) {
+  const pressHandler = () => {
+    navigation.push('CreateFeedback');
+  };
+
+  // Dummy data for username
+  const userName = <Text style={styles.userNameStyle}>Chris</Text>;
+
+  // Hook for questionaire data:
+  const [questionaireData, setQuestionaireData] = useState({});
+
+  // Fetch outstanding questionaires feed onload
+  useEffect(() => {
+    fetch('/api/feed')
+      .then((res) => res.json())
+      .then((res) => setQuestionaireData(res))
+      .catch((err) =>
+        console.log('Failed to load outstanding questionaires from db:', err)
+      );
+  }, []);
+
+  const touchHandler = () => {
+    navigation.navigate('CreateAnswer');
+  };
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.logoStyle}>Critque</Text>
+      <View
+        style={{
+          borderBottomColor: 'grey',
+          borderBottomWidth: 1,
+        }}
+      />
+      <Text style={styles.requestStyle}>
+        {userName} requests your feedback for the following questions:
+      </Text>
+     <TouchableOpacity>
+          <Text onPress={touchHandler}>Sample Question from Joon Kim</Text>
+        </TouchableOpacity>
+      {/* <Questionaire /> */}
+      <View style={styles.linkContainer}>
+        <TouchableOpacity>
+          <Text style={styles.linkStyle} onPress={pressHandler}>
+            Create Feedback
+          </Text>
+        </TouchableOpacity>
+      </View>
+
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'black',
+    padding: 10,
+  },
+  logoStyle: {
+    fontSize: 35,
+    fontFamily: 'Times New Roman',
+    color: 'white',
+    paddingTop: 60,
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingBottom: 10,
+  },
+  userNameStyle: {
+    fontSize: 16,
+    color: 'orange',
+  },
+  requestStyle: {
+    fontSize: 16,
+    color: 'white',
+    paddingTop: 20,
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
+  linkContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    paddingTop: 30,
+  },
+  linkStyle: {
+    fontSize: 20,
+    color: '#1e90ff',
+  },
+});
