@@ -38,10 +38,9 @@ export default function CreateFeedback({navigation}) {
 
   return (
     <View style={styles.container}>
-
       <CreateInput submitHandler = {submitHandler}/>
-
       <View style = {styles.list}>
+
         <FlatList
         data = {questions}
         renderItem = {({item}) => (
@@ -49,10 +48,10 @@ export default function CreateFeedback({navigation}) {
           item = {item}
           pressHandler = {pressHandler}/>
         )}>
-
         </FlatList>
-      </View>
 
+        
+      </View>
       <View style = {styles.buttonContainer}>
       <Button 
       title = 'Next'

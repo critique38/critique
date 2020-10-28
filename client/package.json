@@ -18,6 +18,8 @@
     "react-native-reanimated": "~1.13.0",
     "react-native-safe-area-context": "3.1.4",
     "react-native-screens": "~2.10.1",
+    "react-native-share": "^4.0.4",
+    "react-native-swipe-list-view": "^3.2.5",
     "react-native-web": "^0.13.18",
     "react-navigation": "^4.4.3",
     "react-navigation-drawer": "^2.6.0",

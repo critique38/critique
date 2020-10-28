@@ -5,7 +5,9 @@ import Login from '../components/Login';
 import Home from '../components/Home';
 import SendFeedback from '../components/SendFeedback';
 import CreateFeedback from '../components/CreateFeedback';
-import Header from '../shared/Header';
+import CreateAnswer from '../components/CreateAnswer';
+import SendAnswer from '../components/SendAnswer';
+import Header from '../shared/Header'
 
 const screens = {
   Login: {
@@ -21,9 +23,15 @@ const screens = {
   },
   CreateFeedback: {
     screen: CreateFeedback,
-  },
-  SendFeedback: {
+  }, 
+  SendFeedback:{
     screen: SendFeedback,
+  },
+  CreateAnswer: {
+    screen: CreateAnswer,
+  },
+  SendAnswer: {
+    screen: SendAnswer,
   },
 };
 

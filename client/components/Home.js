@@ -1,5 +1,6 @@
+
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, Button, TouchableOpacity } from 'react-native';
 
 export default function Home({ navigation }) {
   const pressHandler = () => {
@@ -22,6 +23,10 @@ export default function Home({ navigation }) {
       );
   }, []);
 
+  const touchHandler = () => {
+    navigation.navigate('CreateAnswer');
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.logoStyle}>Critque</Text>
@@ -34,6 +39,9 @@ export default function Home({ navigation }) {
       <Text style={styles.requestStyle}>
         {userName} requests your feedback for the following questions:
       </Text>
+     <TouchableOpacity>
+          <Text onPress={touchHandler}>Sample Question from Joon Kim</Text>
+        </TouchableOpacity>
       {/* <Questionaire /> */}
       <View style={styles.linkContainer}>
         <TouchableOpacity>
@@ -42,6 +50,7 @@ export default function Home({ navigation }) {
           </Text>
         </TouchableOpacity>
       </View>
+
     </View>
   );
 }
