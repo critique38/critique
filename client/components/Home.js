@@ -79,7 +79,7 @@ export default function Home({ navigation }) {
 
   // Fetch outstanding questions fromd db, onload
   useEffect(() => {
-    fetch('http://localhost:3838/feed')
+    fetch('http://192.168.0.186:3030/feed')
       .then((res) => console.log(res))
       .then((res) => setQuestionsData(res))
       .catch((err) =>

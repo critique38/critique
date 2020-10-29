@@ -12,12 +12,15 @@ feedController.outstandingQuestions = (req, res, next) => {
     left join users u on u._id = r.usersource;`;
 
   db.query(queryString)
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-      res.locals.outstandingQuestions = data.rows;
-      return next();
+    .then((res) =>{
+      console.log(res)
+      // res.locals.outstandingQuestions = res.rows
+      // console.log(res.locals.outstandingQuestions)
     })
+    // .then((data) => {
+    //   res.locals.outstandingQuestions = data.rows;
+    //   return next();
+    // })
     .catch((err) => next(err));
 };
 
