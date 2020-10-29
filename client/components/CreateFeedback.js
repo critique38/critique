@@ -13,6 +13,8 @@ export default function CreateFeedback({navigation}) {
     {text: 'What is my biggest strength?', id: '3'}, 
   ])
 
+  const [link, setLink] = useState('')
+
   const submitHandler = (text) => {
     setQuestions((prevQuestions) => {
       return [
@@ -27,11 +29,29 @@ export default function CreateFeedback({navigation}) {
       return prevQuestions.filter(quest => quest.id != id)
     })
   }
-
  
-  const pressNext = () => {
-    navigation.push('SendFeedback')
-  }
+  const pressNext = async () => {
+    try{
+      //middleware should iterate through the array 
+      const body = { questions };
+      const response = await fetch("Enter URL HERE", {
+        method: "POST", 
+        headers: {"Content-Type" : "application/json"}, 
+        body: JSON.stringify(body)
+      })
+      
+      const newLink = await fetch("url Link")
+      setLink(newLink)
+      await navigation.navigate('ShareFeedback', {link :link})
+
+    }
+     catch (err) {
+       console.log(err.message)
+     }
+    };
+
+  
+  
 
   const pressBack = () => {
     navigation.pop();
@@ -53,7 +73,6 @@ export default function CreateFeedback({navigation}) {
         onPress = {onDelete}>
         <Text> Delete </Text>
         </TouchableOpacity>
-
       </View>
     )
   }
@@ -89,13 +108,12 @@ export default function CreateFeedback({navigation}) {
     />
     )
   }
-
-
   return (
     <View style={styles.container}>
+      
       <CreateInput submitHandler = {submitHandler}/>
+     
       <View style = {styles.list}>
- 
         <SwipeListView
         data = {questions}
         renderItem = {renderItem}
@@ -105,9 +123,11 @@ export default function CreateFeedback({navigation}) {
           /> 
       </View>
       <View style = {styles.buttonContainer}>
+
       <Button 
       title = 'Next'
       onPress = {pressNext}/>
+
       </View>
     </View>
   );
