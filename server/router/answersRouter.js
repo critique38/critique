@@ -8,7 +8,7 @@ const answersRouter = express.Router();
 
 // posting feedback response to database
 answersRouter.post('/', answersController.postAnswers, (req, res) => {
-  return res.send(200);
+   res.send(200);
 });
 
 module.exports = answersRouter;
