@@ -1,7 +1,8 @@
+// require('dotenv').config();
 const { Pool } = require('pg');
-require('dotenv').config();
 
-const PG_URI = process.env.DB_URI;
+const PG_URI = 'postgres://oqvzmaws:xj7gtVd0cRoSM2O_NMoYZKUmhJm2f0hC@lallah.db.elephantsql.com:5432/oqvzmaws';
+
 
 const pool = new Pool({
   connectionString: PG_URI,
@@ -27,4 +28,10 @@ CREATE TABLE links (_id SERIAL PRIMARY KEY, users INT NOT NULL, questionnaire IN
 
 CREATE TABLE answers (_id SERIAL PRIMARY KEY, link INT NOT NULL, users INT NOT NULL, question INT NOT NULL, questionnaire INT NOT NULL, answer VARCHAR(8000), FOREIGN KEY (link) REFERENCES links(_id), FOREIGN KEY (users) REFERENCES users(_id), FOREIGN KEY (question) REFERENCES questions(_id), FOREIGN KEY (questionnaire) REFERENCES questionnaire(_id))
 )
+*/
+
+/*
+INSERT INTO users (username, name, email) VALUES (profile.id.displayName,profile.id.givenName, profile.emails[0].value)
+
+INSERT INTO answers (answer, answerUser, questions) VALUES ($1, $2, $3) returning *
 */

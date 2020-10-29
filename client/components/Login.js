@@ -10,6 +10,7 @@ export default function Login({ navigation }) {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.emoji}>✏️</Text>
       <Text style={styles.logoStyle}>Critique</Text>
       <Text style={styles.subHeader}>A Feedback Request App</Text>
       <TouchableOpacity>
@@ -17,6 +18,10 @@ export default function Login({ navigation }) {
           Login
         </Text>
       </TouchableOpacity>
+      <Text style={styles.footer}>Let's grow together.</Text>
+      {/* <Text style={styles.footer2}>
+        Made with ❤️️ by Vince, Joon, Dylan, Chris, and Case.
+      </Text> */}
     </View>
   );
 }
@@ -27,6 +32,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  emoji: {
+    paddingBottom: 25,
   },
   logoStyle: {
     fontSize: 35,
@@ -44,5 +52,17 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: 'orange',
     paddingBottom: 50,
+  },
+  footer: {
+    fontSize: 10,
+    fontStyle: 'italic',
+    color: 'grey',
+    paddingTop: 50,
+  },
+  footer2: {
+    fontSize: 8,
+    fontStyle: 'italic',
+    color: 'grey',
+    paddingTop: 50,
   },
 });

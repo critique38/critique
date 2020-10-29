@@ -1,16 +1,21 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const path = require('path');
-const port = 3838;
+const port = 3030;
 // const loginRouter = require('./router/loginRouter');
-// const feedRouter = require('./router/feedRouter');
-// const answersRouter = require('./router/answersRouter');
-// const requestRouter = require('./router/requestRouter');
+const requestRouter = require('./router/requestRouter');
+const feedRouter = require('./router/feedRouter');
+const answersRouter = require('./router/answersRouter');
+const authRouter = require('./router/authRouter');
 const session = require('express-session');
 const passport = require('passport');
 const cookieSession = require('cookie-session');
+
 // const Strategy = require('passport-google-oauth20').Strategy;
 require('../config/passport');
+
+app.use(cors());
 
 app.use(express.json());
 
@@ -23,7 +28,6 @@ app.use(express.urlencoded({ extended: true }));
 // require('../config/passport')(passport);
 
 // routes users to login
-// app.use('/login', loginRouter);
 
 app.use(
   cookieSession({
@@ -41,18 +45,19 @@ const isLoggedIn = (req, res, next) => {
     // res.send('user not in db');
   }
 };
+app.use('/login', (req, res) => {
+  res.send('successfully logged in');
+});
 
 // in case of failed authentication
 app.use('/failed', (req, res) => res.send('You failed to login'));
-app.use('/chill', isLoggedIn, (req, res) =>
-  res.send('Successfully logged in!!')
-);
+app.use('/chill', (req, res) => res.send('Successfully logged in!!'));
 
 // route to allow users to give answers to requested feedback questionnaires
-// app.use('/answers', answersRouter);
+app.use('/answers', answersRouter);
 
 // route to allow users to request feedback, AKA create a questionnaire
-// app.use('/request', requestRouter);
+app.use('/request', requestRouter);
 
 // session
 app.use(
@@ -63,25 +68,31 @@ app.use(
   })
 );
 
-// Passport middleware
+// initializing Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
 
-// passport and routes for google oauth
-app.get(
-  '/auth/google',
-  passport.authenticate('google', { scope: ['profile', 'email'] })
-);
+// define route handler for authRouter for OAuth
+app.use('/auth', authRouter);
 
-app.get(
-  '/auth/google/callback',
-  passport.authenticate('google', { failureRedirect: '/failed' }),
-  function (req, res) {
-    // console.log('do we get here?');
-    // Successful authentication, redirect home.
-    res.redirect('/chill');
-  }
-);
+// define redirect route post OAuth confirmation
+// app.use('/feed', feedRouter);
+
+// passport and routes for google oauth
+// app.get(
+//   '/auth/google',
+//   passport.authenticate('google', { scope: ['profile', 'email'] })
+// );
+
+// app.get(
+//   '/auth/google/callback',
+//   passport.authenticate('google', { failureRedirect: '/failed' }),
+//   function (req, res) {
+//     // console.log('do we get here?');
+//     // Successful authentication, redirect home.
+//     res.redirect('/chill');
+//   }
+// );
 
 //* logout ability
 // app.get('/logout', (req,res) => {
@@ -90,13 +101,13 @@ app.get(
 //   res.redirect('/')
 // })
 
-// app.use('*', express.static(path.resolve(__dirname, '../index.html')));
-app.use('/', (req, res) => {
-  res.status(200).sendFile(path.resolve(__dirname, '../index.html'));
-});
-
 // route allowing users to see their feedback feed
-// app.use('/feed', feedRouter);
+app.use('/feed', feedRouter);
+
+// app.use('*', express.static(path.resolve(__dirname, '../index.html')));
+// app.use('/', (req, res) => {
+//   res.status(200).sendFile(path.resolve(__dirname, '../client/App.js'));
+// });
 
 // currently error doesnt catch because '/' acounts for all possible paths
 // catch all error handler
@@ -118,3 +129,9 @@ app.use((err, req, res, next) => {
 app.listen(port, () =>
   console.log(`Listening to all your thoughts on port ${port}`)
 );
+
+/*
+callback url response
+http://localhost:3838/auth/google/callback?code=4%2F5wEdGiRvuwmpMNFgunAeXHHlsq94Z89yoxPSftfHcOH-w5hEweYl7iWQX6Ed-OVLXOjpza2jGPC6ydwQfiHlfAI&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=2&prompt=consent#
+
+*/

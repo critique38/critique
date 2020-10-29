@@ -1,10 +1,13 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, Button, TextInput } from 'react-native';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 
 // has access to navigation prop because this funciton is listed in homestack
 export default function CreateAnswer({ navigation }) {
+
+    // receive data from homefeed
+    const question = navigation.getParam('question');
+    const writer = navigation.getParam('writer');
 
     const [text, setText] = useState('');
     const backHandler = () => {
@@ -13,7 +16,7 @@ export default function CreateAnswer({ navigation }) {
     const nextHandler = () => {
         // fix issue of having to click multiple times
         // passes text state to SendAnswer page
-        navigation.navigate('SendAnswer', { answerText: text });
+        navigation.navigate('SendAnswer', { answerText: text, writer: writer });
     };
 
     return (
@@ -21,31 +24,28 @@ export default function CreateAnswer({ navigation }) {
             <View style={styles.page}>
 
                 <View style={styles.questionPanel}>
-                    <Text style={styles.qTitle}>get Q from home, via prop-drill{'\n'}</Text>
-                    <Text style={styles.qWriter}> posted by Joon Kim , also prop-drilled</Text>
+                    <Text style={styles.qTitle}>{question}{'\n'}</Text>
+                    <Text style={styles.qWriter}>posted by {writer}</Text>
                 </View>
 
-                <View style={styles.contentBox}>
-                    {/* Question Content Panel */}  
-                    <Text style={styles.contentText}>Question content, prop-drilled</Text>
-                </View>
-
-                <View style={styles.inputBox}>
+                {/* <View style={styles.inputBox}> */}
                     <TextInput 
                         multiline
                         style={styles.innerInputBox}
                         placeholder={'Write feedback...'}
+                        placeholderTextColor='white'
                         onChangeText={(input) => setText(input)}
                     />
-                </View>
+                {/* </View> */}
 
                 <View style={styles.buttonsBox}>
-                    <TouchableOpacity style={styles.buttons}>
-                        <Text style={styles.backButtonText} onPress={backHandler}>back</Text>
+                    <TouchableOpacity style={styles.buttons} onPress={backHandler}>
+                        <Text style={styles.backButtonText}>back</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.buttons}>
-                        <Text style={styles.nextButtonText} onPress={nextHandler}>next</Text>
-                    </TouchableOpacity>
+                
+                    <TouchableOpacity style={styles.buttons} onPress={nextHandler}>
+                        <Text style={styles.nextButtonText}>next</Text>
+                    </TouchableOpacity>         
                 </View>
         
             </View>
@@ -61,57 +61,63 @@ const styles = StyleSheet.create({
     },
     questionPanel: {
         // flex: 1,
-        paddingVertical: 80,
-        backgroundColor: 'lightgreen',
+        color: 'white',
+        paddingVertical: 120,
+        backgroundColor: 'black',
+        marginBottom: 3,
     },
     qTitle: {
+        color: 'white',
         fontSize: 20,
         fontWeight: '700',
+        paddingLeft: 10,
     },
     qWriter: {
+        color: 'gold',
         fontSize: 10,
-    },
-    contentBox: {
-        // flex: 1,
-        paddingBottom: 300,
-        backgroundColor: 'yellow',
-    },
-    contentText: {
-        justifyContent: 'flex-start',
-        alignItems: 'flex-start',
-        paddingVertical: 10,
+        paddingLeft: 10,
     },
     inputBox: {
         // flex: 1,
-        paddingVertical: 20,
-        backgroundColor: 'orange',
+        paddingVertical: 180,
+        marginTop: 3,
+        backgroundColor: 'black',
     },
     innerInputBox: {
+        color: 'white',
+        backgroundColor: 'black',
         paddingHorizontal:10,
+        paddingVertical: 10,
+        height: 400,
         justifyContent: 'flex-start',
-        alignItems: 'flex-start',
+        // alignItems: 'center',
+      
     },
     buttonsBox: {
         // flex: 1,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'blue', 
+        backgroundColor: '#000000',
+        marginTop: 3 
     },
     buttons: {
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'red',
-        padding: 50,
+        backgroundColor: 'black',
+        padding: 30,
     },
     backButtonText: {
         fontSize: 20,
+        color: 'white',
         fontWeight: 'bold',
-        marginLeft: 90,
+        marginLeft: 50,
+        
     },
     nextButtonText: {
         fontSize: 20,
+        color: 'white',
         fontWeight: 'bold',
-        marginRight: 90,
+        marginRight: 50,
     }
 })
