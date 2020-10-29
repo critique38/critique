@@ -8,22 +8,68 @@ export default function SendFeedback({ navigation }) {
 
   const onShare = () => {
     Share.share({
-      message: 'www.google.com',
-      title: 'google.com',
+      message: 'www.critique.com/user91241/href88312',
+      title: 'www.critique.com/user91241/href88312',
     });
   };
 
   return (
     <View style={styles.container}>
-      <Text>This is your generated link below:</Text>
-      <Text>'www.google.com'</Text>
-      <Button onPress={onShare} title="Share" />
+      <Text style={styles.logoStyle}>Critque</Text>
+      <View
+        style={{
+          borderBottomColor: 'grey',
+          borderBottomWidth: 1,
+        }}
+      />
+      <Text style = {styles.userNameStyle}>This is your generated link:</Text>
+      <Text style = {styles.textStyle}>www.critique.com/user91241/href88312</Text>
+
+      <View style={styles.linkContainer}>
+      <Button style={styles.linkStyle} onPress={onShare} title="Share" />
+      </View>
+
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 24,
+  logoStyle: {
+    fontSize: 35,
+    fontFamily: 'Times New Roman',
+    color: 'white',
+    paddingTop: 30,
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingBottom: 10,
   },
+  container: {
+    flex: 10,
+    backgroundColor: 'black',
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
+  userNameStyle: {
+    fontSize: 16,
+    color: 'orange',
+    paddingTop: 15,
+  },
+  linkContainer: {
+    flex: 0.8,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    paddingTop: 20,
+    paddingBottom: 20,
+    borderTopWidth: 1,
+    borderTopColor: 'grey',
+  },
+  linkStyle: {
+    fontSize: 20,
+    color: '#1e90ff',
+    padding: 20
+  },
+  textStyle:{
+    color:'lightblue',
+    padding: 20,
+  }
 });
