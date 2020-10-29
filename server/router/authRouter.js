@@ -20,7 +20,7 @@ router.get(
 
 // callback route for Google to redirect
 router.get('/google/callback', passport.authenticate('google'), (req, res) => {
-  res.redirect('http://localhost:3838/login');
+  res.redirect('http://192.168.1.177:3838/');
 });
 
 module.exports = router;
