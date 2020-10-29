@@ -25,6 +25,7 @@ export default function CreateAnswer({ navigation }) {
                     <Text style={styles.qWriter}> posted by Joon Kim , also prop-drilled</Text>
                 </View>
 
+                {/* remove this */}
                 <View style={styles.contentBox}>
                     {/* Question Content Panel */}  
                     <Text style={styles.contentText}>Question content, prop-drilled</Text>
