@@ -75,17 +75,17 @@ export default function Home({ navigation }) {
   ];
 
   // Hook for questionaire data:
-  // const [questionaireData, setQuestionaireData] = useState({});
+  const [questionsData, setQuestionsData] = useState({});
 
   // Fetch outstanding questions fromd db, onload
-  // useEffect(() => {
-  //   fetch('/api/feed')
-  //     .then((res) => res.json())
-  //     .then((res) => setQuestionaireData(res))
-  //     .catch((err) =>
-  //       console.log('Failed to load outstanding questionaires from db:', err)
-  //     );
-  // }, []);
+  useEffect(() => {
+    fetch('http://192.168.1.177:3030/feed')
+      .then((res) => res.json())
+      .then((res) => setQuestionsData(res))
+      .catch((err) =>
+        console.log('Failed to load outstanding questions from db:', err)
+      );
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -101,28 +101,31 @@ export default function Home({ navigation }) {
         <FlatList
           showsVerticalScrollIndicator={false}
           keyExtractor={(question) => question.q}
-          data={questions}
+          data={questionsData}
           renderItem={({ item }) => {
-            // element === { item: { q: 'How could I improve on presenting myself?'}, index: 0}
-            return (
-              <View style={styles.questions}>
-                <TouchableOpacity>
-                  <Text style={styles.userNameStyle} onPress={touchHandler}>
-                    {item.asker_id}
-                  </Text>
-                  <Text style={styles.requestStyle} onPress={touchHandler}>
-                    "{item.question}"
-                  </Text>
-                </TouchableOpacity>
-                <View
-                  style={{
-                    paddingTop: 20,
-                    borderBottomColor: 'grey',
-                    borderBottomWidth: 1,
-                  }}
-                />
-              </View>
-            );
+            {
+              if (item.usersource !== 2) {
+                return (
+                  <View style={styles.questions}>
+                    <TouchableOpacity>
+                      <Text style={styles.userNameStyle} onPress={touchHandler}>
+                        {item.name}
+                      </Text>
+                      <Text style={styles.requestStyle} onPress={touchHandler}>
+                        "{item.question}"
+                      </Text>
+                    </TouchableOpacity>
+                    <View
+                      style={{
+                        paddingTop: 20,
+                        borderBottomColor: 'grey',
+                        borderBottomWidth: 1,
+                      }}
+                    />
+                  </View>
+                );
+              }
+            }
           }}
         />
       </View>
