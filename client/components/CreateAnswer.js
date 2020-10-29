@@ -28,12 +28,6 @@ export default function CreateAnswer({ navigation }) {
                     <Text style={styles.qWriter}>posted by {writer}</Text>
                 </View>
 
-                {/* remove this */}
-                <View style={styles.contentBox}>
-                    {/* Question Content Panel */}  
-                    <Text style={styles.contentText}>Question content, prop-drilled</Text>
-                </View>
-
                 <View style={styles.inputBox}>
                     <TextInput 
                         multiline
@@ -83,20 +77,9 @@ const styles = StyleSheet.create({
         fontSize: 10,
         paddingLeft: 10,
     },
-    contentBox: {
-        // flex: 1,
-        paddingBottom: 300,
-        backgroundColor: 'black',
-    },
-    contentText: {
-        color: 'white',
-        justifyContent: 'flex-start',
-        alignItems: 'flex-start',
-        paddingVertical: 10,
-    },
     inputBox: {
         // flex: 1,
-        paddingVertical: 10,
+        paddingVertical: 100,
         marginTop: 3,
         backgroundColor: 'black',
     },
