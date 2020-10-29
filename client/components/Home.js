@@ -8,13 +8,36 @@ import {
 } from 'react-native';
 
 export default function Home({ navigation }) {
+  const [writer, setWriter] = useState('');
+  const [question, setQuestion] = useState('');
+
+  // navigate to CreateFeedback page
   const pressHandler = () => {
-    navigation.push('CreateFeedback');
+    navigation.push('CreateFeedback', );
   };
 
-  const touchHandler = () => {
-    navigation.navigate('CreateAnswer');
+  // send data to CreateAnswer Page
+  const sendWriter = (w) => {
+    setWriter(w);
+  }
+  const sendQuestion = (q) => {
+    setQuestion(q);
+  }
+
+  const writerHandler = () => {
+    navigation.navigate('CreateAnswer', { writer: writer });
   };
+
+  const questionHandler = () => {
+    navigation.navigate('CreateAnswer', { question: question});
+  };
+
+  const combinedSender = (w, q) => {
+    sendWriter(w);
+    writerHandler();
+    sendQuestion(q);
+    questionHandler();
+  }
 
   // dummy data
   const questions = [
@@ -79,7 +102,7 @@ export default function Home({ navigation }) {
 
   // Fetch outstanding questions fromd db, onload
   useEffect(() => {
-    fetch('http://192.168.0.186:3030/feed')
+    fetch('http://10.0.0.250:3030/feed') // <- *** CHANGE this to yours !! ***
       .then((res) => console.log(res))
       .then((res) => setQuestionsData(res))
       .catch((err) =>
@@ -106,11 +129,11 @@ export default function Home({ navigation }) {
             // element === { item: { q: 'How could I improve on presenting myself?'}, index: 0}
             return (
               <View style={styles.questions}>
-                <TouchableOpacity>
-                  <Text style={styles.userNameStyle} onPress={touchHandler}>
+                <TouchableOpacity onPress={() => combinedSender(item.asker_id, item.question)}>
+                  <Text style={styles.userNameStyle}>
                     {item.asker_id}
                   </Text>
-                  <Text style={styles.requestStyle} onPress={touchHandler}>
+                  <Text style={styles.requestStyle}>
                     "{item.question}"
                   </Text>
                 </TouchableOpacity>

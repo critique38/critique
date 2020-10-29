@@ -10,7 +10,7 @@ answersController.postAnswers = (req, res, next) => {
     'INSERT INTO answers (answer, answeruser, questions) VALUES ($1, $2, $3) returning *;';
 
   db.query(queryString, values, (err, res) => {
-    
+    console.log('im here')
     if (err) return next(err);
     return next();
   });
