@@ -26,6 +26,8 @@ export default function SendAnswer({ navigation }) {
         [{ text: 'Confirm' }]
       )
     );
+    // console.log('fire');
+    // navigation.navigate('Home');
   };
 
   return (
