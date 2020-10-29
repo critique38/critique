@@ -1,10 +1,13 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, Button, TextInput } from 'react-native';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 
 // has access to navigation prop because this funciton is listed in homestack
 export default function CreateAnswer({ navigation }) {
+
+    // receive data from homefeed
+    const question = navigation.getParam('question');
+    const writer = navigation.getParam('writer');
 
     const [text, setText] = useState('');
     const backHandler = () => {
@@ -21,8 +24,8 @@ export default function CreateAnswer({ navigation }) {
             <View style={styles.page}>
 
                 <View style={styles.questionPanel}>
-                    <Text style={styles.qTitle}>get Q from home, via prop-drill{'\n'}</Text>
-                    <Text style={styles.qWriter}> posted by Joon Kim , also prop-drilled</Text>
+                    <Text style={styles.qTitle}>{question}{'\n'}</Text>
+                    <Text style={styles.qWriter}>posted by {writer}</Text>
                 </View>
 
                 {/* remove this */}

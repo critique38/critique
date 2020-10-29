@@ -29,6 +29,16 @@ export default function Home({ navigation }) {
     navigation.navigate('CreateAnswer', { question: question});
   };
 
+  const combinedW = (w) => {
+    writerHandler();
+    sendWriter(w);
+  }
+  const combinedQ = (q) => {
+    questionHandler();
+    sendQuestion(q);
+  }
+
+
 
   // dummy data
   const questions = [
@@ -121,10 +131,10 @@ export default function Home({ navigation }) {
             return (
               <View style={styles.questions}>
                 <TouchableOpacity>
-                  <Text style={styles.userNameStyle} onPress={writerHandler, () => sendWriter(item.asker_id)}>
+                  <Text style={styles.userNameStyle} onPress={() => combinedW(item.asker_id)}>
                     {item.asker_id}
                   </Text>
-                  <Text style={styles.requestStyle} onPress={questionHandler, () => sendQuestion(item.question)}>
+                  <Text style={styles.requestStyle} onPress={() => combinedQ(item.question)}>
                     "{item.question}"
                   </Text>
                 </TouchableOpacity>
