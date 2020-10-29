@@ -14,10 +14,11 @@ export default function SendAnswer({ navigation }) {
             },
             body: JSON.stringify({
                 feedbackAnswer: answerText,
-                writer: writer
+                writer: 2,
+                questionId: 7
             })
         };
-        fetch('/answers', postObj)
+        fetch('http://10.0.0.250:3030/answers', postObj)
             .catch(err => Alert.alert(
                 'Oops!', 'Problem with internet connection or server! Please try again', 
                 [{text: 'Confirm'}]
