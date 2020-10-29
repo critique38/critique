@@ -5,6 +5,7 @@ import {
   Text,
   FlatList,
   TouchableOpacity,
+  ScrollView
 } from 'react-native';
 
 export default function Home({ navigation }) {
@@ -13,7 +14,7 @@ export default function Home({ navigation }) {
 
   // navigate to CreateFeedback page
   const pressHandler = () => {
-    navigation.push('CreateFeedback', );
+    navigation.push('CreateFeedback');
   };
 
   // send data to CreateAnswer Page
@@ -103,7 +104,7 @@ export default function Home({ navigation }) {
   // Fetch outstanding questions fromd db, onload
   useEffect(() => {
     fetch('http://10.0.0.250:3030/feed') // <- *** CHANGE this to yours !! ***
-      .then((res) => console.log(res))
+      .then((res) => res.json())
       .then((res) => setQuestionsData(res))
       .catch((err) =>
         console.log('Failed to load outstanding questions from db:', err)
@@ -124,28 +125,31 @@ export default function Home({ navigation }) {
         <FlatList
           showsVerticalScrollIndicator={false}
           keyExtractor={(question) => question.q}
-          data={questions}
+          data={questionsData}
           renderItem={({ item }) => {
-            // element === { item: { q: 'How could I improve on presenting myself?'}, index: 0}
-            return (
-              <View style={styles.questions}>
-                <TouchableOpacity onPress={() => combinedSender(item.asker_id, item.question)}>
-                  <Text style={styles.userNameStyle}>
-                    {item.asker_id}
-                  </Text>
-                  <Text style={styles.requestStyle}>
-                    "{item.question}"
-                  </Text>
-                </TouchableOpacity>
-                <View
-                  style={{
-                    paddingTop: 20,
-                    borderBottomColor: 'grey',
-                    borderBottomWidth: 1,
-                  }}
-                />
-              </View>
-            );
+            {
+              if (item.usersource !== 2) {
+                return (
+                  <View style={styles.questions}>
+                    <TouchableOpacity onPress={() => combinedSender(item.name, item.question)}>
+                      <Text style={styles.userNameStyle}>
+                        {item.name}
+                      </Text>
+                      <Text style={styles.requestStyle}>
+                        "{item.question}"
+                      </Text>
+                    </TouchableOpacity>
+                    <View
+                      style={{
+                        paddingTop: 20,
+                        borderBottomColor: 'grey',
+                        borderBottomWidth: 1,
+                      }}
+                    />
+                  </View>
+                );
+              }
+            }
           }}
         />
       </View>
