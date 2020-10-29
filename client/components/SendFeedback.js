@@ -3,8 +3,6 @@ import { StyleSheet, View, Text, Button, Share } from 'react-native';
 
 export default function SendFeedback({navigation}) {
 
-  const [link, setLink] = useState('www.google.com')
-
   const pressBack = () => {
     navigation.pop();
   }
@@ -21,7 +19,7 @@ export default function SendFeedback({navigation}) {
   return (
     <View style={styles.container}>
       <Text>This is your generated link below:</Text>
-      <Text>{link}</Text>
+      <Text>{navigation.getParam('link')}</Text>
       <Button 
       onPress = {onShare}
       title = 'Share' />
