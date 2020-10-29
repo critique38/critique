@@ -121,6 +121,7 @@ export default function CreateFeedback({navigation}) {
         leftOpenValue ={0}
         rightOpenValue = {-75}
           /> 
+
       </View>
       <View style = {styles.buttonContainer}>
 
