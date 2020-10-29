@@ -11,7 +11,7 @@ const authRouter = require('./router/authRouter');
 const session = require('express-session');
 const passport = require('passport');
 const cookieSession = require('cookie-session');
-const keys = require('../config/keys');
+// const keys = require('../config/keys');
 
 // const Strategy = require('passport-google-oauth20').Strategy;
 require('../config/passport');

@@ -120,8 +120,22 @@ export default function CreateFeedback({ navigation }) {
   };
   return (
     <View style={styles.container}>
+      <Text style={styles.logoStyle}>Critque</Text>
+      <View
+        style={{
+          borderBottomColor: 'grey',
+          borderBottomWidth: 1,
+        }}
+      />
+      <Text style={styles.enterQuestion}>Type your question below</Text>
       <CreateInput submitHandler={submitHandler} />
-
+      <View
+        style={{
+          borderBottomColor: 'grey',
+          borderBottomWidth: 1,
+          marginBottom: 10,
+        }}
+      />
       <View style={styles.container}>
         <SwipeListView
           data={questions}
@@ -144,35 +158,52 @@ export default function CreateFeedback({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#f4f4f4',
-    flex: 1,
+  logoStyle: {
+    fontSize: 35,
+    fontFamily: 'Times New Roman',
+    color: 'white',
+    paddingTop: 30,
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingBottom: 10,
+  },
+  enterQuestion: {
+    fontSize: 16,
+    color: 'white',
+    paddingTop: 20,
+    paddingLeft: 10,
+    paddingRight: 10,
   },
   backTextWhite: {
-    color: '#FFF',
+    color: 'orange',
   },
   rowFront: {
     backgroundColor: '#FFF',
-    borderRadius: 5,
+    borderColor: 'orange',
+    borderWidth: 1,
+    borderRadius: 2,
+    borderBottomWidth: 1,
+    borderBottomColor: 'orange',
     height: 60,
     margin: 5,
     marginBottom: 15,
-    shadowColor: '#999',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.8,
-    shadowRadius: 2,
-    elevation: 5,
+    shadowColor: 'orange',
+    shadowOffset: { width: 1, height: 1 },
+    shadowOpacity: 1,
+    // shadowRadius: 0,
+    // elevation: 15,
   },
   rowFrontVisible: {
-    backgroundColor: '#FFF',
-    borderRadius: 5,
+    backgroundColor: 'black',
+    // borderRadius: 5,
     height: 60,
     padding: 10,
     marginBottom: 15,
+    justifyContent: 'center',
   },
   rowBack: {
     alignItems: 'center',
-    backgroundColor: '#DDD',
+    backgroundColor: 'darkgrey',
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -190,26 +221,21 @@ const styles = StyleSheet.create({
     width: 75,
     paddingRight: 17,
   },
-  backRightBtnLeft: {
-    backgroundColor: '#1f65ff',
-    right: 75,
-  },
+  // backRightBtnLeft: {
+  //   backgroundColor: 'black',
+  //   right: 75,
+  // },
   backRightBtnRight: {
-    backgroundColor: 'red',
+    backgroundColor: 'orange',
     right: 0,
     borderTopRightRadius: 5,
     borderBottomRightRadius: 5,
   },
-  trash: {
-    height: 25,
-    width: 25,
-    marginRight: 7,
-  },
   title: {
-    fontSize: 14,
-    fontWeight: 'bold',
+    fontSize: 16,
+    // fontWeight: 'bold',
     marginBottom: 5,
-    color: '#666',
+    color: 'orange',
   },
   details: {
     fontSize: 12,
