@@ -5,53 +5,56 @@ import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 
 // has access to navigation prop because this funciton is listed in homestack
 export default function CreateAnswer({ navigation }) {
+  const [text, setText] = useState('');
+  const backHandler = () => {
+    navigation.pop();
+  };
+  const nextHandler = () => {
+    // fix issue of having to click multiple times
+    // passes text state to SendAnswer page
+    navigation.navigate('SendAnswer', { answerText: text });
+  };
 
-    const [text, setText] = useState('');
-    const backHandler = () => {
-        navigation.pop();
-    }
-    const nextHandler = () => {
-        // fix issue of having to click multiple times
-        // passes text state to SendAnswer page
-        navigation.navigate('SendAnswer', { answerText: text });
-    };
-
-    return (
-        <ScrollView>
-            <View style={styles.page}>
-
-                <View style={styles.questionPanel}>
-                    <Text style={styles.qTitle}>get Q from home, via prop-drill{'\n'}</Text>
-                    <Text style={styles.qWriter}> posted by Joon Kim , also prop-drilled</Text>
-                </View>
-
-                <View style={styles.contentBox}>
-                    {/* Question Content Panel */}  
-                    <Text style={styles.contentText}>Question content, prop-drilled</Text>
-                </View>
-
-                <View style={styles.inputBox}>
-                    <TextInput 
-                        multiline
-                        style={styles.innerInputBox}
-                        placeholder={'Write feedback...'}
-                        placeholderTextColor='white'
-                        onChangeText={(input) => setText(input)}
-                    />
-                </View>
-
-                <View style={styles.buttonsBox}>
-                    <TouchableOpacity style={styles.buttons} onPress={backHandler}>
-                        <Text style={styles.backButtonText}>back</Text>
-                    </TouchableOpacity>
-                
-                    <TouchableOpacity style={styles.buttons} onPress={nextHandler}>
-                        <Text style={styles.nextButtonText}>next</Text>
-                    </TouchableOpacity>         
-                </View>
-        
+  return (
+    <ScrollView>
+        <View style={styles.page}>
+            
+            <View style={styles.questionPanel}>
+            <Text style={styles.qTitle}>
+                get Q from home, via prop-drill{'\n'}
+            </Text>
+            <Text style={styles.qWriter}>
+                {' '}
+                posted by Joon Kim , also prop-drilled
+            </Text>
             </View>
-        </ScrollView>
+
+            <View style={styles.contentBox}>
+            {/* Question Content Panel */}
+            <Text style={styles.contentText}>Question content, prop-drilled</Text>
+            </View>
+
+            <View style={styles.inputBox}>
+            <TextInput
+                multiline
+                style={styles.innerInputBox}
+                placeholder={'Write feedback...'}
+                onChangeText={(input) => setText(input)}
+            />
+            </View>
+
+            <View style={styles.buttonsBox}>
+                <TouchableOpacity style={styles.buttons} onPress={backHandler}>
+                    <Text style={styles.backButtonText}>back</Text>
+                </TouchableOpacity>
+            
+                <TouchableOpacity style={styles.buttons} onPress={nextHandler}>
+                    <Text style={styles.nextButtonText}>next</Text>
+                </TouchableOpacity>         
+            </View>
+        
+        </View>
+    </ScrollView>
 
     )
 };

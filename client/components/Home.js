@@ -75,17 +75,17 @@ export default function Home({ navigation }) {
   ];
 
   // Hook for questionaire data:
-  // const [questionaireData, setQuestionaireData] = useState({});
+  const [questionsData, setQuestionsData] = useState({});
 
   // Fetch outstanding questions fromd db, onload
-  // useEffect(() => {
-  //   fetch('/api/feed')
-  //     .then((res) => res.json())
-  //     .then((res) => setQuestionaireData(res))
-  //     .catch((err) =>
-  //       console.log('Failed to load outstanding questionaires from db:', err)
-  //     );
-  // }, []);
+  useEffect(() => {
+    fetch('http://localhost:3838/feed')
+      .then((res) => console.log(res))
+      .then((res) => setQuestionsData(res))
+      .catch((err) =>
+        console.log('Failed to load outstanding questions from db:', err)
+      );
+  }, []);
 
   return (
     <View style={styles.container}>
