@@ -7,7 +7,7 @@ import SendFeedback from '../components/SendFeedback';
 import CreateFeedback from '../components/CreateFeedback';
 import CreateAnswer from '../components/CreateAnswer';
 import SendAnswer from '../components/SendAnswer';
-import Header from '../shared/Header'
+import Header from '../shared/Header';
 
 const screens = {
   Login: {
@@ -23,8 +23,8 @@ const screens = {
   },
   CreateFeedback: {
     screen: CreateFeedback,
-  }, 
-  SendFeedback:{
+  },
+  SendFeedback: {
     screen: SendFeedback,
   },
   CreateAnswer: {
@@ -40,8 +40,9 @@ const HomeStack = createStackNavigator(screens, {
   defaultNavigationOptions: {
     headerBackTitle: 'Back',
     title: 'Critique',
+    headerShown: false,
     headerStyle: {
-      backgroundColor: '#eee',
+      backgroundColor: 'black',
     },
   },
 });
