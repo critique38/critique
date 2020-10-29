@@ -131,7 +131,7 @@ export default function Home({ navigation }) {
               if (item.usersource !== 2) {
                 return (
                   <View style={styles.questions}>
-                    <TouchableOpacity onPress={() => combinedSender(item.name, item.question)}>
+                    <TouchableOpacity onPress={() => combinedSender(item._id, item.question)}>
                       <Text style={styles.userNameStyle}>
                         {item.name}
                       </Text>
