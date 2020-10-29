@@ -5,13 +5,18 @@ import CreateList from '../components/CreateList'
 import CreateInput from '../components/CreateInput'
 import { SwipeListView  } from 'react-native-swipe-list-view';
 
+
 export default function CreateFeedback({navigation}) {
 
+
+
   const [questions,setQuestions] = useState([
-    {text: 'How can I be better?', id: '1'}, 
-    {text: 'How can I do more?', id: '2'}, 
-    {text: 'What is my biggest strength?', id: '3'}, 
+    {text: 'How can I be better?', id: '1', frontId: 1000, usersource:1}, 
+    {text: 'How can I do more?', id: '2', frontId: 1001, usersource:2}, 
+    {text: 'What is my biggest strength?', id: '3', frontId: 1002, usersource:3}, 
   ])
+
+
 
   const [link, setLink] = useState('')
 
@@ -29,29 +34,31 @@ export default function CreateFeedback({navigation}) {
       return prevQuestions.filter(quest => quest.id != id)
     })
   }
- 
+  
   const pressNext = async () => {
+    for (let i=0; i<questions.length;i++){
     try{
       //middleware should iterate through the array 
-      const body = { questions };
-      const response = await fetch("Enter URL HERE", {
-        method: "POST", 
-        headers: {"Content-Type" : "application/json"}, 
+      const body =  questions[i] ;
+      const response = await fetch('http://192.168.0.186:3030/request', {
+        method: 'POST', 
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        }, 
         body: JSON.stringify(body)
       })
       
-      const newLink = await fetch("url Link")
-      setLink(newLink)
-      await navigation.navigate('ShareFeedback', {link :link})
+      // const newLink = await fetch("url Link")
+      // setLink(newLink)
 
     }
      catch (err) {
        console.log(err.message)
      }
     };
-
-  
-  
+    await navigation.navigate('SendFeedback')
+  }
 
   const pressBack = () => {
     navigation.pop();

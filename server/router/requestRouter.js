@@ -7,8 +7,10 @@ const requestController = require('../controller/requestController');
 
 // Sending [{}]
 
-requestRouter.post('/', requestController.postQuestions, (res, req) => {
-  res.snedStatus(200);
+requestRouter.post('/', 
+requestController.postQuestions, 
+(res, req) => {
+  res.sendStatus(200);
 });
 
 module.exports = requestRouter;
