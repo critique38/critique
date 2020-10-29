@@ -38,7 +38,7 @@ export default function SendAnswer({ navigation }) {
         <Text style={styles.previewText}>"{answerText}"</Text>
       </View>
 
-      <View>
+      <View style={styles.containerbox}>
         <Text style={styles.answerAs}>Answer As:</Text>
         <View style={StyleSheet.buttons}>
           <TouchableOpacity style={StyleSheet.anon}>
@@ -132,5 +132,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginTop: 70,
     marginLeft: 175,
+  },
+  containerbox: {
+    paddingBottom: 300,
   },
 });

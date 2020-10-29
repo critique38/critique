@@ -22,13 +22,15 @@ export default function SendFeedback({ navigation }) {
           borderBottomWidth: 1,
         }}
       />
-      <Text style = {styles.userNameStyle}>This is your generated link:</Text>
-      <Text style = {styles.textStyle}>www.critique.com/user91241/href88312</Text>
-
-      <View style={styles.linkContainer}>
-      <Button style={styles.linkStyle} onPress={onShare} title="Share" />
+      <View style={styles.container2}>
+        <Text style={styles.userNameStyle}>This is your generated link:</Text>
+        <Text style={styles.textStyle}>
+          www.critique.com/user91241/href88312
+        </Text>
       </View>
-
+      <View style={styles.linkContainer}>
+        <Button style={styles.linkStyle} onPress={onShare} title="Share" />
+      </View>
     </View>
   );
 }
@@ -49,6 +51,14 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
   },
+  container2: {
+    flex: 10,
+    backgroundColor: 'black',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
   userNameStyle: {
     fontSize: 16,
     color: 'orange',
@@ -66,10 +76,10 @@ const styles = StyleSheet.create({
   linkStyle: {
     fontSize: 20,
     color: '#1e90ff',
-    padding: 20
-  },
-  textStyle:{
-    color:'lightblue',
     padding: 20,
-  }
+  },
+  textStyle: {
+    color: 'lightblue',
+    padding: 20,
+  },
 });
