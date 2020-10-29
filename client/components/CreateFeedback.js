@@ -120,7 +120,7 @@ export default function CreateFeedback({navigation}) {
       
       <CreateInput submitHandler = {submitHandler}/>
      
-      <View style = {styles.list}>
+      <View style = {styles.container}>
         <SwipeListView
         data = {questions}
         renderItem = {renderItem}
@@ -128,15 +128,17 @@ export default function CreateFeedback({navigation}) {
         leftOpenValue ={0}
         rightOpenValue = {-75}
           /> 
-
       </View>
-      <View style = {styles.buttonContainer}>
 
-      <Button 
-      title = 'Next'
-      onPress = {pressNext}/>
-
+      <View style = {styles.linkContainer}>
+        <TouchableOpacity>
+        <Text style={styles.linkStyle} onPress={pressNext}>
+            Submit Questions
+          </Text>
+       </TouchableOpacity>
       </View>
+
+
     </View>
   );
 }
@@ -212,5 +214,24 @@ const styles = StyleSheet.create({
   details: {
     fontSize: 12,
     color: '#999',
+  },
+  linkContainer: {
+    flex: 0.8,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    paddingTop: 20,
+    paddingBottom: 20,
+    borderTopWidth: 1,
+    borderTopColor: 'grey',
+  },
+  linkStyle: {
+    fontSize: 20,
+    color: '#1e90ff',
+  },
+  container: {
+    flex: 10,
+    backgroundColor: 'black',
+    paddingLeft: 10,
+    paddingRight: 10,
   },
 });
