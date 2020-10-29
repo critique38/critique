@@ -80,7 +80,7 @@ export default function Home({ navigation }) {
   // Fetch outstanding questions fromd db, onload
   useEffect(() => {
     fetch('http://192.168.1.177:3030/feed')
-      .then((res) => console.log(res))
+      .then((res) => res.json())
       .then((res) => setQuestionsData(res))
       .catch((err) =>
         console.log('Failed to load outstanding questions from db:', err)
@@ -101,7 +101,7 @@ export default function Home({ navigation }) {
         <FlatList
           showsVerticalScrollIndicator={false}
           keyExtractor={(question) => question.q}
-          data={questions}
+          data={questionsData}
           renderItem={({ item }) => {
             // element === { item: { q: 'How could I improve on presenting myself?'}, index: 0}
             return (
