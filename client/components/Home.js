@@ -54,6 +54,24 @@ export default function Home({ navigation }) {
       receiver_id: 3,
       question: 'Is free will real or just an illusion?',
     },
+    {
+      question_id: 8,
+      asker_id: 'Joon',
+      receiver_id: 3,
+      question: 'What harsh truths do you prefer to ignore?',
+    },
+    {
+      question_id: 9,
+      asker_id: 'Vincent',
+      receiver_id: 3,
+      question: 'Will you be available at 11:30pm to work?',
+    },
+    {
+      question_id: 10,
+      asker_id: 'Joon',
+      receiver_id: 3,
+      question: 'Is free will real or just an illusion?',
+    },
   ];
 
   // Hook for questionaire data:
@@ -108,15 +126,6 @@ export default function Home({ navigation }) {
           }}
         />
       </View>
-      {/* <Text style={styles.requestStyle}>
-        {userName} requests your feedback for the following questions:
-      </Text>
-      <TouchableOpacity>
-        <Text style={styles.requestStyle} onPress={touchHandler}>
-          Sample Question from Joon Kim
-        </Text>
-      </TouchableOpacity> */}
-      {/* <Questionaire /> */}
       <View style={styles.linkContainer}>
         <TouchableOpacity>
           <Text style={styles.linkStyle} onPress={pressHandler}>
@@ -157,7 +166,7 @@ const styles = StyleSheet.create({
     paddingRight: 10,
   },
   outstandingStyle: {
-    fontSize: 18,
+    fontSize: 20,
     color: '#1e90ff',
     paddingTop: 20,
     paddingLeft: 10,
@@ -165,11 +174,13 @@ const styles = StyleSheet.create({
     paddingBottom: 15,
   },
   linkContainer: {
-    flex: 1,
+    flex: 0.8,
     flexDirection: 'row',
     justifyContent: 'center',
     paddingTop: 20,
     paddingBottom: 20,
+    borderTopWidth: 1,
+    borderTopColor: 'grey',
   },
   linkStyle: {
     fontSize: 20,
