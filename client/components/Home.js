@@ -5,7 +5,7 @@ import {
   Text,
   FlatList,
   TouchableOpacity,
-  ScrollView
+  ScrollView,
 } from 'react-native';
 
 export default function Home({ navigation }) {
@@ -20,17 +20,17 @@ export default function Home({ navigation }) {
   // send data to CreateAnswer Page
   const sendWriter = (w) => {
     setWriter(w);
-  }
+  };
   const sendQuestion = (q) => {
     setQuestion(q);
-  }
+  };
 
   const writerHandler = () => {
     navigation.navigate('CreateAnswer', { writer: writer });
   };
 
   const questionHandler = () => {
-    navigation.navigate('CreateAnswer', { question: question});
+    navigation.navigate('CreateAnswer', { question: question });
   };
 
   const combinedSender = (w, q) => {
@@ -38,7 +38,7 @@ export default function Home({ navigation }) {
     writerHandler();
     sendQuestion(q);
     questionHandler();
-  }
+  };
 
   // dummy data
   const questions = [
@@ -103,7 +103,7 @@ export default function Home({ navigation }) {
 
   // Fetch outstanding questions fromd db, onload
   useEffect(() => {
-    fetch('http://10.0.0.250:3030/feed') // <- *** CHANGE this to yours !! ***
+    fetch('http://192.168.1.177:3030/feed') // <- *** CHANGE this to yours !! ***
       .then((res) => res.json())
       .then((res) => setQuestionsData(res))
       .catch((err) =>
@@ -131,13 +131,11 @@ export default function Home({ navigation }) {
               if (item.usersource !== 2) {
                 return (
                   <View style={styles.questions}>
-                    <TouchableOpacity onPress={() => combinedSender(item._id, item.question)}>
-                      <Text style={styles.userNameStyle}>
-                        {item.name}
-                      </Text>
-                      <Text style={styles.requestStyle}>
-                        "{item.question}"
-                      </Text>
+                    <TouchableOpacity
+                      onPress={() => combinedSender(item._id, item.question)}
+                    >
+                      <Text style={styles.userNameStyle}>{item.name}</Text>
+                      <Text style={styles.requestStyle}>"{item.question}"</Text>
                     </TouchableOpacity>
                     <View
                       style={{
@@ -169,7 +167,7 @@ const styles = StyleSheet.create({
     fontSize: 35,
     fontFamily: 'Times New Roman',
     color: 'white',
-    paddingTop: 30,
+    paddingTop: 70,
     paddingLeft: 10,
     paddingRight: 10,
     paddingBottom: 10,
