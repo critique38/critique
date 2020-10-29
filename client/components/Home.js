@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
     fontSize: 35,
     fontFamily: 'Times New Roman',
     color: 'white',
-    paddingTop: 30,
+    paddingTop: 70,
     paddingLeft: 10,
     paddingRight: 10,
     paddingBottom: 10,
