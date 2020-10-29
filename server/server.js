@@ -1,16 +1,20 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const path = require('path');
 const port = 3838;
 // const loginRouter = require('./router/loginRouter');
-// const feedRouter = require('./router/feedRouter');
-// const answersRouter = require('./router/answersRouter');
-// const requestRouter = require('./router/requestRouter');
+const feedRouter = require('./router/feedRouter');
+const answersRouter = require('./router/answersRouter');
+const requestRouter = require('./router/requestRouter');
 const session = require('express-session');
 const passport = require('passport');
 const cookieSession = require('cookie-session');
+
 // const Strategy = require('passport-google-oauth20').Strategy;
 require('../config/passport');
+
+app.use(cors());
 
 app.use(express.json());
 
@@ -49,10 +53,10 @@ app.use('/chill', isLoggedIn, (req, res) =>
 );
 
 // route to allow users to give answers to requested feedback questionnaires
-// app.use('/answers', answersRouter);
+app.use('/answers', answersRouter);
 
 // route to allow users to request feedback, AKA create a questionnaire
-// app.use('/request', requestRouter);
+app.use('/request', requestRouter);
 
 // session
 app.use(
@@ -90,13 +94,13 @@ app.get(
 //   res.redirect('/')
 // })
 
+// route allowing users to see their feedback feed
+app.use('/feed', feedRouter);
+
 // app.use('*', express.static(path.resolve(__dirname, '../index.html')));
 app.use('/', (req, res) => {
-  res.status(200).sendFile(path.resolve(__dirname, '../index.html'));
+  res.status(200).sendFile(path.resolve(__dirname, '../client/App.js'));
 });
-
-// route allowing users to see their feedback feed
-// app.use('/feed', feedRouter);
 
 // currently error doesnt catch because '/' acounts for all possible paths
 // catch all error handler
